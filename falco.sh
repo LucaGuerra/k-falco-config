@@ -7,6 +7,10 @@ apt-get -y install linux-headers-$(uname -r)
 helm repo add falcosecurity https://falcosecurity.github.io/charts
 helm repo update
 
+export KUBECONFIG=/etc/kubernetes/admin.conf
+
+KUBERNETES_SERVICE_HOST=$(kubectl get svc kubernetes -o jsonpath='{.spec.clusterIP}')
+
 cat <<EOF > /tmp/falco-values.yaml
 # Default values for Falco.
 image:
