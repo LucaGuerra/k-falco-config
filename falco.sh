@@ -9,7 +9,7 @@ helm repo update
 
 export KUBECONFIG=/etc/kubernetes/admin.conf
 
-KUBERNETES_SERVICE_HOST=$(kubectl get svc kubernetes -o jsonpath='{.spec.clusterIP}')
+export KUBERNETES_SERVICE_HOST=$(kubectl get svc kubernetes -o jsonpath='{.spec.clusterIP}')
 
 cat <<EOF > /tmp/falco-values.yaml
 # Default values for Falco.
@@ -41,7 +41,7 @@ kubernetesSupport:
   #     Note that the format of this command-line option prohibits use of files whose names contain
   #     ':' or '#' characters in the file name.
   apiAuth: /var/run/secrets/kubernetes.io/serviceaccount/token
-  apiUrl: "https://${KUBERNETES_SERVICE_HOST}"
+  apiUrl: "https://$KUBERNETES_SERVICE_HOST"
   # If true, only the current node (on which Falco is running) will be considered when requesting metadata of pods
   # to the API server. Disabling this option may have a performance penalty on large clusters.
   enableNodeFilter: true
