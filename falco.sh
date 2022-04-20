@@ -112,7 +112,7 @@ ebpf:
 leastPrivileged:
   # Constrain Falco with capabilities instead of running a privileged container.
   # This option is only supported with the eBPF driver and a kernel >= 5.8.
-  # Ensure the eBPF driver is enabled (i.e., setting the `ebpf.enabled` option to true).
+  # Ensure the eBPF driver is enabled (i.e., setting the ebpf.enabled option to true).
   enabled: false
 auditLog:
   # true here activates the K8s Audit Log feature for Falco
@@ -199,7 +199,7 @@ falco:
   # is greater than the given threshold (a double in the range [0, 1]).
   #
   # For debugging/testing it is possible to simulate the drops using
-  # the `simulate_drops: true`. In this case the threshold does not apply.
+  # the simulate_drops: true. In this case the threshold does not apply.
   syscallEventDrops:
     threshold: .1
     actions:
